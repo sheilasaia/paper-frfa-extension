@@ -251,7 +251,7 @@ q2_data_crops_users <- q2_data %>%
   select(ResponseId, Q2a_lower) %>%
   na.omit()
 
-d# not really sure how to process this at this time
+# not really sure how to process this at this time
 # will likely have to aggregate it manually
 
 # export for qualitative coding
