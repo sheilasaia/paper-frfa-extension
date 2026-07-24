@@ -7,12 +7,10 @@
 
 
 # ---- notes ----
-# notes:
 
 
 # ---- to do ----
-# to do list:
-# questions that need to be coded: Q2a, Q2b, Q2c,
+
 
 # ---- load libraries ----
 library(tidyverse)
@@ -20,30 +18,33 @@ library(readxl)
 library(here)
 
 
-
 # ---- load data ----
 # load cleaned data in xlsx sheet
 cleaned_data <- readxl::read_xlsx(path = here::here("data", "data_20220315.xlsx"),
                                   sheet = "CleanedData",
                                   col_names = TRUE)
+# NOTE: data is not provided in the repository to protect the identies of
+# participants and to comply with the approved IRB
 
 # load question look up table
 question_lookup <- readxl::read_xlsx(path = here::here("data", "data_20220315.xlsx"),
                                      sheet = "QuestionLookup",
                                      col_names = TRUE)
 
+# NOTE: data is not provided in the repository to protect the identies of
+# participants and to comply with the approved IRB
 
-# ---- remove responses that did not consent ----
+
+# ---- keep responses that confirmed consent ----
 names(cleaned_data)
 consented_data <- cleaned_data %>%
   filter(`Informed Consent` == "I consent, begin the survey") %>%
-  filter(ResponseId != "R_2s0E9TjxBEMwFzj")
-# take out testing data > this was submitted by us as a test and is not valid
+  filter(ResponseId != "R_2s0E9TjxBEMwFzj") # take out testing data submitted by the study developers as a test, it is not valid
 
 
 # ---- separate out only completed surveys ----
 hist(consented_data$Progress, xlab = "Qualtrics Progress (%)", ylab = "Frequency")
-# looks like most people were 80% complete or above
+# most responses were 80% complete or above
 
 # take 100% complete for now
 completed_data <- consented_data %>%
@@ -251,12 +252,12 @@ q2_data_crops_users <- q2_data %>%
   select(ResponseId, Q2a_lower) %>%
   na.omit()
 
-# not really sure how to process this at this time
-# will likely have to aggregate it manually
+# we will have to aggregate these data manually
 
 # export for qualitative coding
 write_csv(x = q2_data, file = here::here("data", "q2_data.csv"))
 write_csv(x = q2_data_crops_users, file = here::here("data", "q2_data_crops_user_grows.csv"))
+
 
 # ---- question 3 - types of decisions in your job ----
 q3_data <- selected_data %>%
@@ -544,13 +545,12 @@ ggplot(data = q4b_summary_data) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
         text = element_text(size = 14))
-# what to do with "Do Not Use"?
 
 # summarize by job
 q4b_summary_data_job <- q4b_data %>%
   left_join(job_lookup, by = "ResponseId") %>%
   select(-Q4b) %>%
-  na.omit() %>% # drop NA's for now
+  na.omit() %>% # drop NAs for now
   ungroup() %>%
   group_by(Q4_short, Q1_short) %>%
   summarize(count = n()) %>%
@@ -641,7 +641,6 @@ q4c_summary_selection_count <- q4c_data %>%
 mean(q4c_summary_selection_count$count, na.rm = TRUE)
 # 1.6 responses per person
 
-
 # number of people responding
 dim(na.omit(q4c_data))[1]
 # 161 non-NA responses (has duplicate people)
@@ -664,7 +663,6 @@ ggplot(data = q4c_summary_data) +
   theme_classic() +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
         text = element_text(size = 14))
-# what to do with "Do Not Use"?
 
 # summarize by job
 q4c_summary_data_job <- q4c_data %>%
@@ -1299,8 +1297,6 @@ ggplot(data = q5_summary_data_perc) +
 dev.off()
 
 
-
-
 # ---- question 6 - thinking about climate change in your work ----
 q6_data <- selected_data %>%
   select(ResponseId, Q6) %>%
@@ -1335,7 +1331,6 @@ q6_summary_data_perc <- q6_summary_data %>%
   mutate(perc = round((count / num_responses) * 100, 1),
          perc_text = paste(perc, "%"))
   
-
 # plot percent
 # figure s4
 png(here::here("figures", "fig_s4.png"), height = 8, width = 10, units = "in", res = 300)
@@ -1659,7 +1654,6 @@ ggplot(data = q8b_data_tidy_summarize) +
         legend.position = "none")
 
 
-
 # ---- question 9 - parameters used ----
 q9_data <- selected_data %>%
   select(ResponseId, Q9, Q9_6_TEXT) %>%
@@ -1785,8 +1779,6 @@ ggplot(data = q9_summary_data_exp) +
 q9_data_other <- q9_data %>%
   select(ResponseId, Q9_short, Q9_6_TEXT) %>%
   filter(Q9_short == "Other")
-
-# growing/planting/USDA zone
 
 
 # ---- question 10 - freq. of time seeking for weather info ----
