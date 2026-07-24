@@ -124,8 +124,8 @@ job_lookup_selection_counts <- job_lookup %>%
 #         text = element_text(size = 14))
 
 # plot percent
-# figure 1
-png(here::here("figures", "fig_1.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A1
+png(here::here("figures", "fig_A1.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q1_summary_data_perc) +
   geom_col(mapping = aes(x = Q1_short, y = perc)) +
   geom_text(mapping = aes(x = Q1_short, y = perc + 2, label = perc_text), size = 5) +
@@ -176,8 +176,8 @@ q17_summary_data_perc <- q17_summary_data %>%
          perc_text = paste(perc, "%"))
 
 # plot
-# figure s1
-png(here::here("figures", "fig_s1.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A2
+png(here::here("figures", "fig_A2.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q17_summary_data_perc) +
   geom_col(mapping = aes(x = Q17_short, y = perc)) +
   geom_text(mapping = aes(x = Q17_short, y = perc + 1, label = perc_text), size = 5) +
@@ -879,8 +879,8 @@ q4_summary_data_perc <- q4_summary_data %>%
   mutate(perc = round((count / total_count) * 100, 1))
 
 # plot
-# figure 3
-png(here::here("figures", "fig_3.png"), height = 8, width = 10, units = "in", res = 300)
+# figure 1
+png(here::here("figures", "fig_1.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q4_summary_data_perc) +
   geom_col(mapping = aes(x = Q4_short, y = perc, fill = decision_type),
            position = "dodge", color = "grey25") +
@@ -1280,8 +1280,8 @@ q5_summary_data_perc <- q5_summary_data %>%
          perc_text = paste(perc, "%"))
 
 # plot
-# figure s3
-png(here::here("figures", "fig_s3.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A7
+png(here::here("figures", "fig_A7.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q5_summary_data_perc) +
   geom_col(mapping = aes(x = Q5, y = perc, fill = decision_type),
            position = "dodge", color = "grey25") +
@@ -1332,8 +1332,8 @@ q6_summary_data_perc <- q6_summary_data %>%
          perc_text = paste(perc, "%"))
   
 # plot percent
-# figure s4
-png(here::here("figures", "fig_s4.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A5
+png(here::here("figures", "fig_A5.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q6_summary_data_perc) +
   geom_col(mapping = aes(x = Q6_fix, y = perc)) +
   geom_text(mapping = aes(x = Q6_fix, y = perc + 2, label = perc_text), size = 5) +
@@ -1444,8 +1444,8 @@ q7_summary_data_perc <- q7_summary_data %>%
          perc_text = paste(perc, "%"))
 
 # plot percent
-# figure s5
-png(here::here("figures", "fig_s5.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A6
+png(here::here("figures", "fig_A6.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q7_summary_data_perc) +
   geom_col(mapping = aes(x = Q7_short, y = perc)) +
   geom_text(mapping = aes(x = Q7_short, y = perc + 2, label = perc_text), size = 5) +
@@ -1554,8 +1554,8 @@ q8a_summary_data <- q8a_data %>%
          perc_text = paste0(perc, " %"))
 
 # plot
-# figure 2
-png(here::here("figures", "fig_2.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A3
+png(here::here("figures", "fig_A3.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q8a_summary_data) +
   geom_col(mapping = aes(x = Q8_short, y = perc)) +
   geom_text(mapping = aes(x = Q8_short, y = perc + 2, label = perc_text), size = 5) +
@@ -1697,8 +1697,8 @@ q9_summary_data <- q9_data %>%
 #         text = element_text(size = 14))
 
 # plot percent
-# figure s2
-png(here::here("figures", "fig_s2.png"), height = 8, width = 10, units = "in", res = 300)
+# figure A4
+png(here::here("figures", "fig_A4.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = q9_summary_data) +
   geom_col(mapping = aes(x = Q9_short, y = perc)) +
   geom_text(mapping = aes(x = Q9_short, y = perc + 5, label = perc_text), size = 5) +
@@ -2264,8 +2264,8 @@ heat_map_summary_data <- bind_rows(q10_q11_summary_data_fix, q12_q13_summary_dat
   mutate(data_type = fct_relevel(data_type, "weather", "climate"))
 
 # plot heatmap of percents
-# figure 4
-png(here::here("figures", "fig_4.png"), height = 8, width = 10, units = "in", res = 300)
+# figure 2
+png(here::here("figures", "fig_2.png"), height = 8, width = 10, units = "in", res = 300)
 ggplot(data = heat_map_summary_data) +
   geom_tile(mapping = aes(x = satisfaction, y = frequency, fill = perc), color = "black", lwd = 0.5) +
   labs(x = "Satisfaction", y = "Frequency", title = "", fill = "Percent (%)") +
