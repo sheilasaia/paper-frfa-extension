@@ -1,6 +1,6 @@
-# paper-frfa-extension
+# paper-frfa-extension README
 
-Code repository for paper titled "Assessing Future-Ready Climate Data Needs of Extension Professionals and Agricultural Producers" submitted to Journal of Extension.
+Code repository for paper titled "Assessing Future-Ready Climate Data Needs of Extension Professionals and Agricultural Producers" accepted in *Journal of Extension*.
 
 Note: Data are not included in this repository to protect the identies of participates.
 
